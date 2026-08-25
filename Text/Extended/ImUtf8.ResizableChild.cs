@@ -30,8 +30,8 @@ public static unsafe partial class ImUtf8
         // Use two IDs to store state and current resizing value if any.
         var stateId = GetId("####state"u8);
         var valueId = GetId("####value"u8);
-        var state   = ImGui.GetStateStorage().GetIntRef(stateId, 0);
-        var value   = ImGui.GetStateStorage().GetFloatRef(valueId, 0f);
+        ref var state = ref ImGui.GetStateStorage().GetIntRef(stateId, 0);
+        ref var value = ref ImGui.GetStateStorage().GetFloatRef(valueId, 0f);
         currentSize = state switch
         {
             1 => size with { X = value },
